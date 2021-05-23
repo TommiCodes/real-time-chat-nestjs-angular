@@ -11,9 +11,6 @@ COPY package*.json ./
 # Install deps inside container
 RUN npm install
 
-#  Bundle App Sources
-COPY . .
-
 RUN npm run build
 
 EXPOSE 3000
