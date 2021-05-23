@@ -6,21 +6,20 @@ import { UserI } from 'src/user/model/user.interface';
 import { Repository } from 'typeorm';
 import { map, mapTo, switchMap } from 'rxjs/operators';
 import { IPaginationOptions, paginate, Pagination } from 'nestjs-typeorm-paginate';
-
-const bcrypt = require('bcrypt');
+import { AuthService } from 'src/auth/service/auth.service';
 
 @Injectable()
 export class UserService {
 
   constructor(
     @InjectRepository(UserEntity)
-    private readonly userRepository: Repository<UserEntity>
+    private readonly userRepository: Repository<UserEntity>,
+    private authService: AuthService
   ) { }
 
   create(newUser: UserI): Observable<UserI> {
     return this.mailExists(newUser.email).pipe(
       switchMap((exists: boolean) => {
-        console.log(exists);
         if (!exists) {
           return this.hashPassword(newUser.password).pipe(
             switchMap((passwordHash: string) => {
@@ -38,15 +37,15 @@ export class UserService {
     )
   }
 
-  // Refactor to use JWT in next Video
-  login(user: UserI): Observable<boolean> {
+  login(user: UserI): Observable<string> {
     return this.findByEmail(user.email).pipe(
       switchMap((foundUser: UserI) => {
         if (foundUser) {
           return this.validatePassword(user.password, foundUser.password).pipe(
             switchMap((matches: boolean) => {
               if (matches) {
-                return this.findOne(foundUser.id).pipe(mapTo(true))
+                return this.findOne(foundUser.id).pipe(
+                  switchMap((payload: UserI) => this.authService.generateJwt(payload)))
               } else {
                 throw new HttpException('Login was not successfull, wrong credentials', HttpStatus.UNAUTHORIZED);
               }
@@ -63,18 +62,17 @@ export class UserService {
     return from(paginate<UserEntity>(this.userRepository, options));
   }
 
-  private validatePassword(password: string, storedPasswordHash: string): Observable<any> {
-    return from(bcrypt.compare(password, storedPasswordHash));
-
-  }
-
   // also returns the password
   private findByEmail(email: string): Observable<UserI> {
     return from(this.userRepository.findOne({ email }, { select: ['id', 'email', 'username', 'password'] }));
   }
 
   private hashPassword(password: string): Observable<string> {
-    return from<string>(bcrypt.hash(password, 12));
+    return this.authService.hashPassword(password);
+  }
+
+  private validatePassword(password: string, storedPasswordHash: string): Observable<any> {
+    return this.authService.comparePasswords(password, storedPasswordHash);
   }
 
   private findOne(id: number): Observable<UserI> {
