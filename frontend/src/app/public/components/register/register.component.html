@@ -1,0 +1,54 @@
+<div class="container">
+
+  <div>
+    <div class="login">
+      <a [routerLink]="['../login']">Go to Login</a>
+    </div>
+
+    <div>
+
+      <mat-card>
+        <mat-card-title>Register</mat-card-title>
+
+        <mat-card-content>
+          <form [formGroup]="form" (ngSubmit)="register()">
+
+            <mat-form-field>
+              <input type="email" matInput placeholder="Email" formControlName="email">
+              <mat-error *ngIf="email.touched && email.hasError('required')">Email is required</mat-error>
+              <mat-error *ngIf="email.touched && email.hasError('email')">Email must be valid</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input type="text" matInput placeholder="Username" formControlName="username">
+              <mat-error *ngIf="username.touched && username.hasError('required')">Username is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input type="password" matInput placeholder="Password" formControlName="password">
+              <mat-error *ngIf="password.touched && password.hasError('required')">Password is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input type="password" matInput placeholder="Password Confirmation" formControlName="passwordConfirm">
+            </mat-form-field>
+
+            <mat-hint *ngIf="!form.valid"><small>Please fill out all needed information</small></mat-hint>
+            <mat-error *ngIf="passwordConfirm.touched && form.hasError('passwordsNotMatching')"><small>Passwords are not
+                matching</small></mat-error>
+
+            <div class="button">
+              <button mat-button type="submit" [disabled]="!form.valid">Register</button>
+            </div>
+
+          </form>
+        </mat-card-content>
+
+      </mat-card>
+
+    </div>
+
+
+  </div>
+
+</div>
