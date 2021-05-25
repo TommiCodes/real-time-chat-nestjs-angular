@@ -1,2 +1,36 @@
-<p>login works!</p>
-<button mat-button [routerLink]="['../register']">Go To Register Page</button>
+<div class="container">
+
+  <div>
+    <div class="register">
+      <a [routerLink]="['../register']">Go to Register</a>
+    </div>
+
+    <div>
+      <mat-card>
+        <mat-card-title>Login</mat-card-title>
+        <mat-card-content>
+          <form [formGroup]="form" (ngSubmit)="login()">
+
+            <mat-form-field>
+              <input type="email" matInput placeholder="Email" formControlName="email">
+              <mat-error *ngIf="email.touched && email.hasError('required')">Email is required</mat-error>
+              <mat-error *ngIf="email.touched && email.hasError('email')">Email must be valid</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input type="password" matInput placeholder="Password" formControlName="password">
+              <mat-error *ngIf="password.touched && password.hasError('required')">Password is required</mat-error>
+            </mat-form-field>
+
+            <mat-hint *ngIf="!form.valid"><small>Please fill out all needed information</small></mat-hint>
+
+            <div class="button">
+              <button mat-button type="submit" [disabled]="!form.valid">Login</button>
+            </div>
+
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
