@@ -79,6 +79,10 @@ export class UserService {
     return from(this.userRepository.findOne({ id }));
   }
 
+  public getOne(id: number): Promise<UserI> {
+    return this.userRepository.findOneOrFail({id});
+  }
+
   private mailExists(email: string): Observable<boolean> {
     return from(this.userRepository.findOne({ email })).pipe(
       map((user: UserI) => {

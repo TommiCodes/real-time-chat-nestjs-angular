@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, Req, UseGuards } from '@nestjs/common';
 import { Pagination } from 'nestjs-typeorm-paginate';
 import { Observable, of } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
@@ -25,7 +25,6 @@ export class UserController {
     )
   }
 
-  @UseGuards(JwtAuthGuard)
   @Get()
   findAll(
     @Query('page') page: number = 1,
