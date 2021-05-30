@@ -21,13 +21,15 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@nestjs/common": "^7.6.15",
+    "@nestjs/common": "^8.0.0-alpha.5",
     "@nestjs/config": "^0.6.3",
-    "@nestjs/core": "^7.6.15",
+    "@nestjs/core": "^8.0.0-alpha.5",
     "@nestjs/jwt": "^7.2.0",
     "@nestjs/passport": "^7.1.5",
-    "@nestjs/platform-express": "^7.6.15",
+    "@nestjs/platform-express": "^8.0.0-alpha.5",
+    "@nestjs/platform-socket.io": "^8.0.0-alpha.5",
     "@nestjs/typeorm": "^7.1.5",
+    "@nestjs/websockets": "^8.0.0-alpha.5",
     "bcrypt": "^5.0.1",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
@@ -38,7 +40,8 @@
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.6.6",
+    "rxjs": "^7.1.0",
+    "socket.io": "^4.1.2",
     "typeorm": "^0.2.32"
   },
   "devDependencies": {
