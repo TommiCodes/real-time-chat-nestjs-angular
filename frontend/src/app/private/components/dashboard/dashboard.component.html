@@ -1,7 +1,30 @@
-<p>dashboard works!</p>
+<div class="container">
+  <mat-card>
+    <div style="display: flex; flex-direction: row;">
 
-<mat-selection-list [multiple]="false">
-  <mat-list-option *ngFor="let room of (rooms$ | async)?.items" [value]="room">
-    Name: {{room.name}} Id: {{room.id}}
-  </mat-list-option>
-</mat-selection-list>
+      <div>
+        <h1>My Chatrooms</h1>
+        <button mat-button [routerLink]="['../create-room']">Create new Room</button>
+        <mat-selection-list [multiple]="false" (selectionChange)="onSelectRoom($event)">
+          <mat-list-option *ngFor="let room of (rooms$ | async)?.items" [value]="room">
+            Name: {{room.name}} Id: {{room.id}}
+            <mat-divider></mat-divider>
+          </mat-list-option>
+        </mat-selection-list>
+        <mat-paginator
+        [length]="(rooms$ | async)?.meta?.totalItems"
+        [pageIndex]="(rooms$ | async)?.meta?.currentPage"
+        [pageSize]="(rooms$ | async)?.meta?.itemCount"
+        (page)="onPaginateRooms($event)"
+        [pageSizeOptions]="[10,25,50]"
+        ></mat-paginator>
+      </div>
+
+      <div style="margin-left: 40px;">
+        <h1>My Room</h1>
+        {{(selectedRoom | json)}}
+      </div>
+
+    </div>
+  </mat-card>
+</div>
