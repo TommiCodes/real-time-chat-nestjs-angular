@@ -1,1 +1,37 @@
-<p>create-room works!</p>
+<div class="container">
+
+  <div>
+    <div class="dashboard">
+      <a [routerLink]="['../dashboard']">Go to Dashboard</a>
+    </div>
+
+    <div>
+      <mat-card>
+        <mat-card-title>Create Chatroom</mat-card-title>
+        <mat-card-content>
+          <form [formGroup]="form" (ngSubmit)="create()">
+
+            <mat-form-field>
+              <input type="text" matInput placeholder="Name" formControlName="name">
+              <mat-error *ngIf="name.touched && name.hasError('required')">Name is required</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input type="text" matInput placeholder="Description" formControlName="description">
+            </mat-form-field>
+
+            <app-select-users [users]="users.value" (addUser)="addUser(initUser($event))"
+              (removeuser)="removeUser($event.id)"></app-select-users>
+
+            <mat-hint *ngIf="!form.valid"><small>Please fill out all needed information</small></mat-hint>
+
+            <div class="button">
+              <button mat-button type="submit" [disabled]="!form.valid">Create Chatroom</button>
+            </div>
+
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

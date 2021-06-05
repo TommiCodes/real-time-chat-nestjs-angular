@@ -5,19 +5,17 @@
       <div>
         <h1>My Chatrooms</h1>
         <button mat-button [routerLink]="['../create-room']">Create new Room</button>
-        <mat-selection-list [multiple]="false" (selectionChange)="onSelectRoom($event)">
-          <mat-list-option *ngFor="let room of (rooms$ | async)?.items" [value]="room">
-            Name: {{room.name}} Id: {{room.id}}
-            <mat-divider></mat-divider>
-          </mat-list-option>
-        </mat-selection-list>
-        <mat-paginator
-        [length]="(rooms$ | async)?.meta?.totalItems"
-        [pageIndex]="(rooms$ | async)?.meta?.currentPage"
-        [pageSize]="(rooms$ | async)?.meta?.itemCount"
-        (page)="onPaginateRooms($event)"
-        [pageSizeOptions]="[10,25,50]"
-        ></mat-paginator>
+        <span *ngIf="(rooms$|async)?.items?.length > 0; else no_rooms">
+          <mat-selection-list [multiple]="false" (selectionChange)="onSelectRoom($event)">
+            <mat-list-option *ngFor="let room of (rooms$ | async)?.items" [value]="room">
+              Name: {{room.name}} Id: {{room.id}}
+              <mat-divider></mat-divider>
+            </mat-list-option>
+          </mat-selection-list>
+          <mat-paginator [length]="(rooms$ | async)?.meta?.totalItems" [pageIndex]="(rooms$ | async)?.meta?.currentPage"
+            [pageSize]="(rooms$ | async)?.meta?.itemCount" (page)="onPaginateRooms($event)"
+            [pageSizeOptions]="[10,25,50]"></mat-paginator>
+        </span>
       </div>
 
       <div style="margin-left: 40px;">
@@ -28,3 +26,9 @@
     </div>
   </mat-card>
 </div>
+
+<ng-template #no_rooms>
+  <div>
+    <mat-error>No Chatrooms for you so far, please create one or get invited</mat-error>
+  </div>
+</ng-template>
