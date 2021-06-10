@@ -24,6 +24,7 @@ export class ChatRoomComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    this.chatService.leaveRoom(changes['chatRoom'].previousValue);
     if(this.chatRoom) {
       this.chatService.joinRoom(this.chatRoom);
     }
