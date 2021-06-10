@@ -3,9 +3,12 @@
     <div style="display: flex; flex-direction: row;">
 
       <div>
-        <h1>My Chatrooms</h1>
-        <button mat-button [routerLink]="['../create-room']">Create new Room</button>
-        <span *ngIf="(rooms$|async)?.items?.length > 0; else no_rooms">
+        <div>
+          <h2>My Chatrooms</h2>
+          <button mat-button [routerLink]="['../create-room']">Create new Room</button>
+        </div>
+
+        <div *ngIf="(rooms$|async)?.items?.length > 0; else no_rooms" class="rooms">
           <mat-selection-list [multiple]="false" (selectionChange)="onSelectRoom($event)">
             <mat-list-option *ngFor="let room of (rooms$ | async)?.items" [value]="room">
               Name: {{room.name}} Id: {{room.id}}
@@ -13,14 +16,14 @@
             </mat-list-option>
           </mat-selection-list>
           <mat-paginator [length]="(rooms$ | async)?.meta?.totalItems" [pageIndex]="(rooms$ | async)?.meta?.currentPage"
-            [pageSize]="(rooms$ | async)?.meta?.itemCount" (page)="onPaginateRooms($event)"
+            [pageSize]="(rooms$ | async)?.meta?.itemsPerPage" (page)="onPaginateRooms($event)"
             [pageSizeOptions]="[10,25,50]"></mat-paginator>
-        </span>
+        </div>
       </div>
 
-      <div style="margin-left: 40px;">
-        <h1>My Room</h1>
-        {{(selectedRoom | json)}}
+      <div class="chatroom">
+        <app-chat-room [chatRoom]="selectedRoom"></app-chat-room>
+
       </div>
 
     </div>
