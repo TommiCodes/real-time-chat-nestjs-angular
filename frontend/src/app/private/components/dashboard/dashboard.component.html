@@ -4,7 +4,10 @@
 
       <div>
         <div>
-          <h2>My Chatrooms</h2>
+          <span style="display: flex; flex-direction: row; align-items: baseline;">
+            <h2>My Chatrooms</h2>
+            <small style="margin-left:10px;">Logged in as {{user.username}}</small>
+          </span>
           <button mat-button [routerLink]="['../create-room']">Create new Room</button>
         </div>
 
