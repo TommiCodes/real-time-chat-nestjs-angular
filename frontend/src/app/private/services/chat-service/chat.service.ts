@@ -12,6 +12,10 @@ export class ChatService {
 
   constructor(private socket: CustomSocket, private snackbar: MatSnackBar) { }
 
+  getAddedMessage(): Observable<MessageI> {
+    return this.socket.fromEvent<MessageI>('messageAdded');
+  }
+
   sendMessage(message: MessageI) {
     this.socket.emit('addMessage', message);
   }
@@ -33,7 +37,7 @@ export class ChatService {
   }
 
   emitPaginateRooms(limit: number, page: number) {
-    this.socket.emit('paginateRooms', {limit, page});
+    this.socket.emit('paginateRooms', { limit, page });
   }
 
   createRoom(room: RoomI) {
