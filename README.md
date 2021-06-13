@@ -1,6 +1,7 @@
 # real-time-chat-nestjs-angular
 
 Link to Github: https://github.com/ThomasOliver545/real-time-chat-nestjs-angular  
+Link to all Commits on Github: https://github.com/ThomasOliver545/real-time-chat-nestjs-angular/commits  
 Link to Youtube Playlist: https://www.youtube.com/playlist?list=PLVfq1luIZbSkICzoA8EuvTskPEROS68i9  
 Link to Twitter: https://twitter.com/Thomas_OliverK  
 
