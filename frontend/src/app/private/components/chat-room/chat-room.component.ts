@@ -40,7 +40,9 @@ export class ChatRoomComponent implements OnChanges, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.scrollToBottom();
+    if (this.messagesScroller) {
+      this.scrollToBottom();
+    }
   }
 
   ngOnDestroy() {
@@ -53,7 +55,10 @@ export class ChatRoomComponent implements OnChanges, OnDestroy, AfterViewInit {
   }
 
   scrollToBottom(): void {
-    setTimeout(() => {this.messagesScroller.nativeElement.scrollTop = this.messagesScroller.nativeElement.scrollHeight}, 1);
+    try {
+      setTimeout(() => { this.messagesScroller.nativeElement.scrollTop = this.messagesScroller.nativeElement.scrollHeight }, 1);
+    } catch { }
+
   }
 
 }
