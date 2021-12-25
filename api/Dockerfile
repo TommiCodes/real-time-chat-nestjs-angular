@@ -1,6 +1,6 @@
 # Specify Node Version and Image
 # Name Image development (can be anything)
-FROM node:14 AS development
+FROM node:16 AS development
 
 # Specify Working directory inside container
 WORKDIR /thomas/src/app
@@ -19,7 +19,7 @@ EXPOSE 3000
 ## PRODUCTION ##
 ################
 # Build another image named production
-FROM node:14 AS production
+FROM node:16 AS production
 
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
