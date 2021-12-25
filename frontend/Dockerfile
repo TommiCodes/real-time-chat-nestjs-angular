@@ -1,6 +1,6 @@
 
 # Stage 1: build
-FROM node:16 AS development
+FROM node:14 AS development
 
 WORKDIR /thomas/frontend/src/app
 
