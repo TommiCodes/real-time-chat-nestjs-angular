@@ -11,6 +11,7 @@ Since i am doing this in my freetime Support via "Github Sponsor", "Github Follo
 - Api build with NestJS 8, because v8 has Support for the latest Socket.io Release v4
 - Angular used in v12 & also Angular Material
 - Start Command `docker-compose up`
+- Sometimes the package-lock.json can cause issues, then just delete it and let docker do everything
 - The first Video is an Overview for the first Part of the series [Videos 1-17], there will also be more features & bugfixes added in the future
 (then with like another overview video)
 - All Commits that are matched with a video are prefixed with the Video Number, where they were made, e.g. `Video-17: ...`
