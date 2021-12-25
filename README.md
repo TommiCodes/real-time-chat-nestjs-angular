@@ -5,13 +5,15 @@ Link to all Commits on Github: https://github.com/ThomasOliver545/real-time-chat
 Link to Youtube Playlist: https://www.youtube.com/playlist?list=PLVfq1luIZbSkICzoA8EuvTskPEROS68i9  
 Link to Twitter: https://twitter.com/Thomas_OliverK  
 
+Since i am doing this in my freetime Support via "Github Sponsor", "Github Follow", "Youtube Follow" etc. would be great.
+
 ## Good to know
 - Api build with NestJS 8, because v8 has Support for the latest Socket.io Release v4
 - Angular used in v12 & also Angular Material
 - Start Command `docker-compose up`
 - The first Video is an Overview for the first Part of the series [Videos 1-17], there will also be more features & bugfixes added in the future
 (then with like another overview video)
-- All Commits are prefixed with the Video Number, where they were made, e.g. `Video-17: ...`
+- All Commits that are matched with a video are prefixed with the Video Number, where they were made, e.g. `Video-17: ...`
 - In the folder _user_stories you can have a look at all the implemented user stories so far, in 00_overview you have a list of all videos
 - Sometimes when you follow the videos you might need to dump the images/containers and rebuild, look below to the tipps & tricks
 - in the todo.md file are some ideas that could be implemented in the future

@@ -1,4 +1,5 @@
-## Open Todos
+## Open Todos that could be implemented in coming versions
+
 - Create Chatroom, don't select own user
 - add logout
 - Infinite Scrolling for Chatroom: Messages
